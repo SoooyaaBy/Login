@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login UI</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000428;
+      background: radial-gradient(circle, #020111, #000428);
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Efeitos de luz no fundo */
+    .bg-lines {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .line {
+      position: absolute;
+      width: 2px;
+      height: 200px;
+      background: cyan;
+      opacity: 0.6;
+      animation: move 3s linear infinite;
+    }
+
+    @keyframes move {
+      from { transform: translateY(-200px); }
+      to { transform: translateY(110vh); }
+    }
+
+    /* Card de login */
+    .login-box {
+      width: 350px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      z-index: 2;
+      text-align: center;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 15px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 15px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      background: linear-gradient(90deg, #00c6ff, #ff00ff);
+    }
+
+    .login-box a {
+      display: inline-block;
+      margin: 10px;
+      color: #ccc;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-icons i {
+      font-size: 22px;
+      color: white;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-lines" id="bg"></div>
+
+  <div class="login-box">
+    <input type="text" placeholder="Username" />
+    <input type="Senha" placeholder="Senha" />
+    <button>ENTRAR</button>
+
+    <div>
+      <a href="#">Esqueceu a senha?</a>
+      <a href="#">Crie uma conta</a>
+    </div>
+
+    <div class="social-icons">
+      <i>S</i>
+      <i>E</i>
+      <i>U</i>
+      <i>L</i>
+      <i>G</i>
+      <i>I</i>
+    </div>
+  </div>
+
+  <script>
+    // Criar animação dinâmica no fundo
+    const bg = document.getElementById("bg");
+
+    function createLine() {
+      const line = document.createElement("div");
+      line.classList.add("line");
+      line.style.left = Math.random() * 100 + "vw";
+      line.style.height = 150 + Math.random() * 200 + "px";
+      line.style.background = Math.random() > 0.5 ? "#00eaff" : "#b600ff";
+      line.style.animationDuration = 2 + Math.random() * 3 + "s";
+      bg.appendChild(line);
+
+      setTimeout(() => line.remove(), 5000);
+    }
+
+    setInterval(createLine, 200);
+  </script>
+</body>
+</html>
